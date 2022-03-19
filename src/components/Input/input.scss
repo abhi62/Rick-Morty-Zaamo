@@ -1,0 +1,33 @@
+.input-b {
+  margin: 20px 0;
+  .input-section {
+    height: 50px;
+    width: 90%;
+    margin-left: 5%;
+    background-color: #0a0a0a;
+    border-radius: 100px;
+    overflow: hidden;
+
+    .text-input {
+      height: 100%;
+      width: 100%;
+      color: #ffffff;
+      font-size: 1rem;
+      padding: 0 0 0 20px;
+
+      background-color: transparent;
+      outline: none;
+      border: none;
+      font-weight: normal;
+      font-family: sans-serif;
+    }
+  }
+
+  .message-section {
+    margin-top: 1px;
+    .message {
+      font-size: 0.8rem;
+      color: rgba(219, 26, 26, 0.89);
+    }
+  }
+}

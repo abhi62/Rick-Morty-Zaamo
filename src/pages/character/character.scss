@@ -1,0 +1,39 @@
+.character-main {
+  & .ep-cards {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .cr-cards-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .ep-heading-sec {
+      margin: 20px 0 40px 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      .ep-heading {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  @media screen and(min-width: 618px) {
+    & .row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & .card {
+        min-width: 500px;
+        padding-top: 50px;
+        border-radius: 40px;
+      }
+    }
+  }
+}

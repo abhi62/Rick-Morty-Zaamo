@@ -1,0 +1,28 @@
+.auth-main {
+  .auth-card {
+    &:hover {
+      border-color: #5353ff;
+      transform: rotate(0deg) !important;
+    }
+
+    .a-bottom-section {
+      margin-top: 70px;
+
+      .a-button-section {
+        margin-top: 55px;
+      }
+    }
+    .redirect-section {
+      margin-top: 35px;
+
+      .redirect-text {
+        font-size: 1rem;
+        font-weight: normal;
+
+        .redirect-highlight {
+          color: rgb(0, 162, 255);
+        }
+      }
+    }
+  }
+}

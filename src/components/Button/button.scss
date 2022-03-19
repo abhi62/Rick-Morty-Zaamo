@@ -1,0 +1,16 @@
+.btn {
+  height: 50px;
+  width: 90%;
+  background-color: #ffae00;
+  border-radius: 100px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  .button-label {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: normal;
+    font-family: "DM Sans";
+  }
+}
