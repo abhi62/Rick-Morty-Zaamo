@@ -1,8 +1,10 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Input from "../Input";
-import Button from "../Button";
+import Input from "../Input/index";
+import TextAreaInput from "../TextAreaInput/index";
+import Button from "../Button/index";
 import Navbar from "../Navbar/index";
+import Alert from "../Alert/index";
 
 const Auth = ({
   title,
@@ -42,16 +44,30 @@ const Auth = ({
 
               <div className="a-bottom-section">
                 <div className="a-input-section">
-                  {props?.map((item, i) => {
+                  {props?.map((item) => {
                     return (
-                      <Input
-                        key={item.id}
-                        name={item.name}
-                        placeholder={item.placeholder}
-                        value={item.value}
-                        onChange={item.onChange}
-                        inputError={item.inputError}
-                      />
+                      <>
+                        {item.inputType === "textarea" ? (
+                          <TextAreaInput
+                            key={item.id}
+                            name={item.name}
+                            placeholder={item.placeholder}
+                            value={item.value}
+                            onChange={item.onChange}
+                            inputError={item.inputError}
+                          />
+                        ) : (
+                          <Input
+                            key={item.id}
+                            name={item.name}
+                            placeholder={item.placeholder}
+                            value={item.value}
+                            onChange={item.onChange}
+                            inputError={item.inputError}
+                            inputType={item.inputType}
+                          />
+                        )}
+                      </>
                     );
                   })}
                 </div>
@@ -61,23 +77,26 @@ const Auth = ({
                 </div>
               </div>
 
-              <div className="redirect-section">
-                <h1 className="redirect-text">
-                  <span>
-                    {redirectName}{" "}
-                    <span
-                      className="redirect-highlight"
-                      onClick={redirectHandel}
-                    >
-                      {redirectHighlight}
+              {redirectName && redirectHighlight && (
+                <div className="redirect-section">
+                  <h1 className="redirect-text">
+                    <span>
+                      {redirectName}{" "}
+                      <span
+                        className="redirect-highlight"
+                        onClick={redirectHandel}
+                      >
+                        {redirectHighlight}
+                      </span>
                     </span>
-                  </span>
-                </h1>
-              </div>
+                  </h1>
+                </div>
+              )}
             </form>
           </div>
         </div>
       </main>
+      <Alert />
     </div>
   );
 };

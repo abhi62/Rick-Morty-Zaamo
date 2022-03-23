@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 import client from "../../apolloConfig";
 import { GET_SINGLE_CHARACTERS } from "../../queries";
 import Spinner from "../../components/Spinner/index";
@@ -8,6 +9,7 @@ import Navbar from "../../components/Navbar/index";
 import CharacterDetailsCard from "../../components/CharacterDetailsCard";
 import EpisodeCardCard from "../../components/EpisodeCard";
 import BottomTab from "../../components/BottomTab/index";
+import Alert from "../../components/Alert/index";
 
 const Character = ({ character }) => {
   const [characterData, setCharacterData] = useState(null);
@@ -21,7 +23,7 @@ const Character = ({ character }) => {
     if (id) {
       (async () => {
         try {
-          const { data, error } = await client.query({
+          const { data } = await client.query({
             query: GET_SINGLE_CHARACTERS,
             variables: {
               id,
@@ -30,10 +32,10 @@ const Character = ({ character }) => {
 
           if (data) {
             setCharacterData(data.character);
+            setIsLoading(false);
           }
-          setIsLoading(false);
         } catch (error) {
-          console.warn(error, "error");
+          toast.error("Something went wrong!");
           setIsLoading(false);
         }
       })();
@@ -75,6 +77,7 @@ const Character = ({ character }) => {
         <BottomTab />
         <div className="blank"></div>
       </main>
+      <Alert />
     </div>
   );
 };

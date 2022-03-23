@@ -1,12 +1,9 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
 import { LikeIcon } from "./Icons/LikeIcon/index";
-
-import { AddFavorite } from "../helpers/addFavorite";
-import { useEffect, useState } from "react";
-
-import { CheckFavorite } from "../helpers/checkFavorite";
+import { addFavoriteCharacter } from "../helpers/addFavoriteCharacter";
+import { checkFavoriteCharacter } from "../helpers/checkFavoriteCharacter";
 
 const Card = ({ character }) => {
   const [isFavorites, setIsFavorites] = useState(false);
@@ -14,13 +11,16 @@ const Card = ({ character }) => {
   const route = useRouter();
 
   useEffect(() => {
-    const { isFavorites: fv } = CheckFavorite({ id: +character?.id });
+    const { isFavorites: fv } = checkFavoriteCharacter({ id: +character?.id });
 
     setIsFavorites(fv);
   }, []);
 
   const favoriteClickHandel = () => {
-    const { isFavorites: fv } = AddFavorite({ id: +character?.id, character });
+    const { isFavorites: fv } = addFavoriteCharacter({
+      id: +character?.id,
+      character,
+    });
 
     return setIsFavorites(fv);
   };
@@ -31,14 +31,17 @@ const Card = ({ character }) => {
 
   return (
     <div className="card">
-      <Image
-        src={character.image}
-        width={300}
-        height={300}
-        className="image"
-        alt="character"
-        onClick={cardClickHandel}
-      />
+      {character?.image && (
+        <Image
+          src={character.image}
+          width={300}
+          height={300}
+          className="image"
+          alt="character"
+          onClick={cardClickHandel}
+        />
+      )}
+
       <div className="description" onClick={cardClickHandel}>
         <p className="name">{character?.name}</p>
         <p className="status">

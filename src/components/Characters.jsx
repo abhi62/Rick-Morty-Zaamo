@@ -1,15 +1,17 @@
-import Head from 'next/head';
-import Card from './Card';
-import EpisodeCard from './EpisodeCard';
-import Switch from 'react-switch';
-import { useRouter } from 'next/router';
-
-import Navbar from './Navbar/index';
-import BottomTab from './BottomTab/index';
-import Link from 'next/link';
+import Head from "next/head";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { WindmillSpinner } from "react-spinner-overlay";
+import ScrollToTop from "react-scroll-up";
+import Card from "./Card";
+import EpisodeCard from "./EpisodeCard";
+import SwitchButton from "./SwitchButton/index";
+import Alert from "./Alert/index";
+import Navbar from "./Navbar/index";
+import BottomTab from "./BottomTab/index";
+import { UpIcon } from "./Icons/UpIcon/index";
 
 const Characters = ({
-  characters,
+  data,
   showSearchBar,
   searchValue,
   onSearchValueChange,
@@ -17,19 +19,17 @@ const Characters = ({
   checked,
   onCheckChange,
   showSwitchButton,
-  hidePagination,
+  loadMore,
+  reachEnd,
 }) => {
-  const router = useRouter();
-  const page = Number(router.query.page) || 1;
-
   return (
     <div>
       <Head>
         <title>Home | RickAndMorty</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='main'>
+      <main className="main">
         <Navbar
           showSearchBar={showSearchBar}
           searchValue={searchValue}
@@ -38,54 +38,59 @@ const Characters = ({
         />
 
         {showSwitchButton && (
-          <div className='check-button-sec'>
-            <div className='check-btn-s'>
-              <div className='heading-cb-sec'>
-                <h1 className='heading-cb'>
-                  <span>Characters</span>
-                </h1>
-              </div>
+          <SwitchButton checked={checked} onCheckChange={onCheckChange} />
+        )}
 
-              <div className='switch-btn-sec'>
-                <Switch checked={checked} onChange={onCheckChange} />
+        {data && (
+          <InfiniteScroll
+            className="row"
+            dataLength={data.length}
+            next={loadMore}
+            hasMore={true}
+            loader={
+              <div
+                className={`loading-sec ${
+                  data.length <= 0 && "loading-sec-center"
+                }`}
+              >
+                {!reachEnd && (
+                  <WindmillSpinner
+                    overlayColor="#000000"
+                    color="#3d71d1"
+                    size={50}
+                    borderWidth={10}
+                  />
+                )}
               </div>
+            }
+          >
+            {checked
+              ? data?.map((item) => (
+                  <EpisodeCard episode={item} key={item.id} />
+                ))
+              : data?.map((item) => <Card character={item} key={item.id} />)}
+          </InfiniteScroll>
+        )}
 
-              <div className='heading-cb-sec'>
-                <h1 className='heading-cb'>
-                  <span>Episodes</span>
-                </h1>
-              </div>
-            </div>
+        {reachEnd && (
+          <div className="no-more-result-sec">
+            <h1 className="no-more-result-text">
+              <span>
+                You have seen it all {checked ? "episodes" : "characters"}
+              </span>
+            </h1>
           </div>
         )}
 
-        <div className='row'>
-          {checked
-            ? characters?.results?.map((item) => (
-                <EpisodeCard episode={item} key={item.id} />
-              ))
-            : characters?.results?.map((item) => (
-                <Card character={item} key={item.id} />
-              ))}
-        </div>
-
         <BottomTab />
+
+        <ScrollToTop showUnder={160}>
+          <UpIcon />
+        </ScrollToTop>
       </main>
-      {!hidePagination && characters?.results && (
-        <footer className='next-footer'>
-          {page > 1 && (
-            <Link href={`/${page - 1}`} passHref>
-              <button>Previous Page</button>
-            </Link>
-          )}
+      <Alert />
 
-          <Link href={`/${page + 1}`} passHref>
-            <button>Next Page</button>
-          </Link>
-        </footer>
-      )}
-
-      <div className='blank'></div>
+      <div className="blank"></div>
     </div>
   );
 };
