@@ -69,7 +69,6 @@ export default function Home() {
           }
         }
       } catch (error) {
-        console.log(error?.message, typeof error?.message);
         if (error?.message?.toString() === "404: Not Found") {
           setReachEnd(true);
         } else {

@@ -16,8 +16,6 @@ export default function Favorites() {
   const [favoritesData, setFavoritesData] = useState([]);
   const [checked, setChecked] = useState(false);
 
-  console.log(favoritesData, "favoritesData");
-
   useEffect(() => {
     if (checked) {
       const data = localStorage.getItem("favorites-episode");
