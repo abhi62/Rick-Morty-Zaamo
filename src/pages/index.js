@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { GET_ALL_CHARACTERS } from "../queries";
 import Characters from "../components/Characters";
 import Spinner from "../components/Spinner/index";
+import Head from "next/head";
 
 export default function Home({ characters }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +26,14 @@ export default function Home({ characters }) {
     return <Spinner />;
   }
 
-  return <Characters characters={characters} />;
+  return (
+    <div>
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
+      <Characters characters={characters} />;
+    </div>
+  );
 }
 
 export const getStaticProps = async () => {
