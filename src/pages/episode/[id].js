@@ -10,6 +10,8 @@ import EpisodeCard from "../../components/EpisodeCard";
 import Card from "../../components/Card";
 import BottomTab from "../../components/BottomTab/index";
 import Alert from "../../components/Alert/index";
+import ScrollToTop from "react-scroll-up";
+import { UpIcon } from "../../components/Icons/UpIcon/index";
 
 const Episode = () => {
   const [episodeData, setEpisodeData] = useState(null);
@@ -76,6 +78,10 @@ const Episode = () => {
         </div>
         <BottomTab />
         <div className="blank"></div>
+
+        <ScrollToTop showUnder={160}>
+          <UpIcon />
+        </ScrollToTop>
       </main>
       <Alert />
     </div>

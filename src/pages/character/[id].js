@@ -10,6 +10,8 @@ import CharacterDetailsCard from "../../components/CharacterDetailsCard";
 import EpisodeCardCard from "../../components/EpisodeCard";
 import BottomTab from "../../components/BottomTab/index";
 import Alert from "../../components/Alert/index";
+import ScrollToTop from "react-scroll-up";
+import { UpIcon } from "../../components/Icons/UpIcon/index";
 
 const Character = ({ character }) => {
   const [characterData, setCharacterData] = useState(null);
@@ -76,6 +78,9 @@ const Character = ({ character }) => {
         </div>
         <BottomTab />
         <div className="blank"></div>
+        <ScrollToTop showUnder={160}>
+          <UpIcon />
+        </ScrollToTop>
       </main>
       <Alert />
     </div>
