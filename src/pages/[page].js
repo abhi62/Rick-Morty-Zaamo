@@ -20,7 +20,7 @@ export const getStaticPaths = async () => {
   const numberOfPages = data?.characters.info.pages + 1;
 
   const arrayOfPages = [...Array(numberOfPages).keys()];
-
+  console.log(arrayOfPages);
   const paths = arrayOfPages.map((page) => ({
     params: { page: `${page}` },
   }));
