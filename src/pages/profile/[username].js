@@ -5,6 +5,7 @@ import dateFormat, { masks } from "dateformat";
 
 import BottomTab from "../../components/BottomTab/index";
 import Spinner from "../../components/Spinner/index";
+import Link from "next/link";
 
 export default function Username() {
   const [isLoading, setIsLoading] = useState(true);
@@ -70,6 +71,9 @@ export default function Username() {
                   </h1>
                 </div>
               )}
+              <Link href="/additional-info">
+                <button>Edit</button>
+              </Link>
             </div>
           </div>
         </div>

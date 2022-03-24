@@ -39,3 +39,12 @@ Steeps to run
 2. Helpers=> have all the vlaidators and helper function to check like password email etc....
 3. pages=> have all the pages with some dynamic pages like character, episode, profile....
 4. Styles=> have global style and other styles are imported as @use to get rid of importing styles in every file.
+
+# How fetching works in here
+
+For example if we want characters info with page data then....
+
+1. Exporting created required queries from queries.js file
+   const GET_PAGE_INFO = gql` query Character { characters { info { pages } } }`;
+
+2. const { data } = await client.query({ query: GET_PAGE_INFO }) and now we have all the data related to page info into 'data' now we can use 'data' and play with it in ui
