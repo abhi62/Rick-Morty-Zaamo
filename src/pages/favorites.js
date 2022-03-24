@@ -89,7 +89,9 @@ export default function Favorites() {
         </div>
 
         <ScrollToTop showUnder={160}>
-          <UpIcon />
+          <div className="slide-to-top">
+            <UpIcon />
+          </div>
         </ScrollToTop>
 
         <BottomTab />

@@ -211,3 +211,11 @@ footer {
     transform: rotate(0deg) scale(1) !important;
   }
 }
+
+@media (max-width: 768px) {
+  .slide-to-top {
+    position: relative;
+    bottom: 50px;
+    left: 30px;
+  }
+}

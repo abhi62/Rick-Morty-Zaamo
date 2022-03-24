@@ -80,7 +80,9 @@ const Episode = () => {
         <div className="blank"></div>
 
         <ScrollToTop showUnder={160}>
-          <UpIcon />
+          <div className="slide-to-top">
+            <UpIcon />
+          </div>
         </ScrollToTop>
       </main>
       <Alert />

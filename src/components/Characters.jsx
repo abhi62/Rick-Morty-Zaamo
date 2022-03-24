@@ -85,7 +85,9 @@ const Characters = ({
         <BottomTab />
 
         <ScrollToTop showUnder={160}>
-          <UpIcon />
+          <div className="slide-to-top">
+            <UpIcon />
+          </div>
         </ScrollToTop>
       </main>
       <Alert />
