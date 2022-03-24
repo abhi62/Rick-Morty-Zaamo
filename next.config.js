@@ -1,10 +1,12 @@
 const withPWA = require("next-pwa");
 module.exports = withPWA({
-  pwa: {
-    dest: "public",
-  },
   reactStrictMode: true,
   images: {
     domains: ["rickandmortyapi.com"],
+  },
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
   },
 });
