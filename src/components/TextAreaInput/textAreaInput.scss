@@ -1,19 +1,21 @@
-.input-b {
+.ta-input-b {
   margin: 20px 0;
-  .input-section {
-    height: 50px;
+  .ta-input-section {
+    height: auto;
     width: 90%;
     margin-left: 5%;
     background-color: #0a0a0a;
-    border-radius: 100px;
+    border-radius: 20px;
     overflow: hidden;
+    padding: 20px 15px 10px 5px;
 
-    .text-input {
+    .ta-text-input {
       height: 100%;
       width: 100%;
       color: #ffffff;
       font-size: 1rem;
       padding: 0 0 0 20px;
+      resize: none;
 
       background-color: transparent;
       outline: none;

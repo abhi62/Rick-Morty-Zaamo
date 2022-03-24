@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
+import { toast } from "react-toastify";
 import Auth from "../components/Auth/index";
 import Spinner from "../components/Spinner/index";
 
@@ -42,10 +42,15 @@ export default function Login() {
   const onSubmitHandel = (e) => {
     e?.preventDefault();
 
-    const { isLoginError } = checkUser({
+    const { isLoginError, invalidError } = checkUser({
       username: usernameValue,
+      password: passwordValue,
       setError: setInputErrors,
     });
+
+    if (invalidError) {
+      return toast.error("Invalid login details!");
+    }
 
     if (!inputErrors.username && !inputErrors.password && !isLoginError) {
       return router.push("/");
@@ -60,6 +65,7 @@ export default function Login() {
       value: usernameValue,
       inputError: inputErrors.username,
       onChange: usernameValueChangeHandel,
+      inputType: "text",
     },
     {
       id: "input-2",
@@ -68,6 +74,7 @@ export default function Login() {
       value: passwordValue,
       inputError: inputErrors.password,
       onChange: passwordValueChangeHandel,
+      inputType: "password",
     },
   ];
 

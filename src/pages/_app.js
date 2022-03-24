@@ -1,6 +1,7 @@
 import "../../styles/globals.scss";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import "react-toastify/dist/ReactToastify.css";
 
 import { checkAuth } from "../helpers/checkAuth";
 

@@ -1,7 +1,5 @@
-import { nanoid } from "nanoid";
-
-const CheckFavorite = ({ id }) => {
-  const favorites = localStorage.getItem("favorites");
+const checkFavoriteCharacter = ({ id }) => {
+  const favorites = localStorage.getItem("favorites-character");
   const activeUser = JSON.parse(localStorage.getItem("activeUser"));
 
   const isFavorites =
@@ -20,4 +18,4 @@ const CheckFavorite = ({ id }) => {
   }
 };
 
-export { CheckFavorite };
+export { checkFavoriteCharacter };

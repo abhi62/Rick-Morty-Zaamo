@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import SearchInput from '../SearchInput/index';
+import Link from "next/link";
+import SearchInput from "../SearchInput/index";
 
 const Navbar = ({
   showSearchBar,
@@ -10,9 +10,9 @@ const Navbar = ({
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
       }}
     >
       {showSearchBar ? (
@@ -22,10 +22,10 @@ const Navbar = ({
           onSearchSubmit={onSearchSubmit}
         />
       ) : (
-        <div className='nav'>
-          <div className='title'>
-            <Link href={'/'}>
-              <span className='logo'>Rick And Morty - Zaamo</span>
+        <div className="nav">
+          <div className="title">
+            <Link href={"/"}>
+              <span className="logo">Rick And Morty - Zaamo</span>
             </Link>
           </div>
         </div>

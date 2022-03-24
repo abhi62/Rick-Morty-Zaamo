@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
-export const GET_ALL_CHARACTERS = gql`
+const GET_ALL_CHARACTERS = gql`
   query Character($page: Int) {
     characters(page: $page) {
       results {
@@ -17,7 +17,20 @@ export const GET_ALL_CHARACTERS = gql`
   }
 `;
 
-export const GET_PAGE_INFO = gql`
+const GET_ALL_EPISODES = gql`
+  query episodes($page: Int) {
+    episodes(page: $page) {
+      results {
+        id
+        name
+        air_date
+        episode
+      }
+    }
+  }
+`;
+
+const GET_PAGE_INFO = gql`
   query Character {
     characters {
       info {
@@ -27,7 +40,7 @@ export const GET_PAGE_INFO = gql`
   }
 `;
 
-export const GET_SINGLE_CHARACTERS = gql`
+const GET_SINGLE_CHARACTERS = gql`
   query Character($id: ID!) {
     character(id: $id) {
       id
@@ -59,7 +72,7 @@ export const GET_SINGLE_CHARACTERS = gql`
   }
 `;
 
-export const GET_SEARCH_CHARACTERS = gql`
+const GET_SEARCH_CHARACTERS = gql`
   query characters($page: Int, $filter: FilterCharacter) {
     characters(page: $page, filter: $filter) {
       results {
@@ -76,7 +89,7 @@ export const GET_SEARCH_CHARACTERS = gql`
   }
 `;
 
-export const GET_SEARCH_EPISODES = gql`
+const GET_SEARCH_EPISODES = gql`
   query episodes($page: Int, $filter: FilterEpisode) {
     episodes(page: $page, filter: $filter) {
       results {
@@ -89,7 +102,7 @@ export const GET_SEARCH_EPISODES = gql`
   }
 `;
 
-export const GET_SINGLE_EPISODE = gql`
+const GET_SINGLE_EPISODE = gql`
   query episode($id: ID!) {
     episode(id: $id) {
       id
@@ -109,18 +122,13 @@ export const GET_SINGLE_EPISODE = gql`
     }
   }
 `;
-export const GET_ALL_EPISODE = gql`
-  query episodes {
-    episodes {
-      results {
-        id
-        name
-        air_date
-        episode
-        characters {
-          image
-        }
-      }
-    }
-  }
-`;
+
+export {
+  GET_ALL_CHARACTERS,
+  GET_PAGE_INFO,
+  GET_SINGLE_CHARACTERS,
+  GET_SINGLE_EPISODE,
+  GET_SEARCH_CHARACTERS,
+  GET_SEARCH_EPISODES,
+  GET_ALL_EPISODES,
+};

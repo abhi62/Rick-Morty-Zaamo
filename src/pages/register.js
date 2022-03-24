@@ -2,17 +2,20 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
 import Auth from "../components/Auth/index";
-
 import { checkEmail } from "../helpers/checkEmail";
 import { checkPassword } from "../helpers/checkPassword";
 import { createUsername } from "../helpers/createUsername";
+import { checkConfirmPassword } from "../helpers/checkConfirmPassword";
 
 export default function Register() {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
+
   const [inputErrors, setInputErrors] = useState({
     email: null,
     password: null,
+    confirmPassword: null,
   });
 
   const router = useRouter();
@@ -23,6 +26,10 @@ export default function Register() {
 
   const passwordValueChangeHandel = (e) => {
     return setPasswordValue(e.target.value);
+  };
+
+  const confirmPasswordValueChangeHandel = (e) => {
+    return setConfirmPasswordValue(e.target.value);
   };
 
   const onSubmitHandel = (e) => {
@@ -38,11 +45,18 @@ export default function Register() {
       setError: setInputErrors,
     });
 
+    const { isConfirmPasswordError } = checkConfirmPassword({
+      password: passwordValue,
+      confirmPassword: confirmPasswordValue,
+      setError: setInputErrors,
+    });
+
     if (
       !inputErrors.email &&
       !inputErrors.password &&
       !isEmailError &&
-      !isPasswordError
+      !isPasswordError &&
+      !isConfirmPasswordError
     ) {
       const { username } = createUsername();
       const accounts = localStorage.getItem("accounts");
@@ -57,6 +71,8 @@ export default function Register() {
               username: username,
               email: emailValue,
               password: passwordValue,
+              about: null,
+              createdAt: new Date().toISOString(),
             },
           ])
         );
@@ -71,6 +87,8 @@ export default function Register() {
               username: username,
               email: emailValue,
               password: passwordValue,
+              about: null,
+              createdAt: new Date().toISOString(),
             },
           ])
         );
@@ -88,6 +106,7 @@ export default function Register() {
       value: emailValue,
       inputError: inputErrors.email,
       onChange: emailValueChangeHandel,
+      inputType: "text",
     },
     {
       id: "input-2",
@@ -96,6 +115,16 @@ export default function Register() {
       value: passwordValue,
       inputError: inputErrors.password,
       onChange: passwordValueChangeHandel,
+      inputType: "password",
+    },
+    {
+      id: "input-3",
+      name: "confirmPasswordValue",
+      placeholder: "Confirm password",
+      value: confirmPasswordValue,
+      inputError: inputErrors.confirmPassword,
+      onChange: confirmPasswordValueChangeHandel,
+      inputType: "password",
     },
   ];
 

@@ -1,22 +1,14 @@
-const Input = ({
-  name,
-  placeholder,
-  value,
-  onChange,
-  inputError,
-  inputType,
-}) => {
+const TextAreaInput = ({ name, placeholder, value, onChange, inputError }) => {
   return (
-    <div className="input-b">
-      <div className="input-section">
-        <input
+    <div className="ta-input-b">
+      <div className="ta-input-section">
+        <textarea
           placeholder={placeholder}
           name={name}
           value={value}
           onChange={onChange}
-          type={inputType ?? "text"}
-          className="text-input"
-          autoComplete={"off"}
+          className="ta-text-input"
+          rows={5}
         />
       </div>
 
@@ -31,4 +23,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default TextAreaInput;

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Hexagon from "react-hexagon";
+import dateFormat, { masks } from "dateformat";
 
 import BottomTab from "../../components/BottomTab/index";
 import Spinner from "../../components/Spinner/index";
@@ -53,6 +54,22 @@ export default function Username() {
                   <span>{userData?.email}</span>
                 </h1>
               </div>
+
+              <div className="join-section">
+                <h1 className="join-text">
+                  <span>
+                    Joined {dateFormat(userData?.createdAt, "dS mmmm yyyy")}
+                  </span>
+                </h1>
+              </div>
+
+              {userData?.about && (
+                <div className="about-section">
+                  <h1 className="about-text">
+                    <span>{userData?.about}</span>
+                  </h1>
+                </div>
+              )}
             </div>
           </div>
         </div>

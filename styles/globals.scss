@@ -1,11 +1,13 @@
-@use '../src/components/BottomTab/bottomTab.scss';
-@use '../src/components/Input/input.scss';
-@use '../src/components/Button/button.scss';
-@use '../src/components/Auth/auth.scss';
-@use '../src/components/SearchInput/searchInput.scss';
-@use '../src/components/Spinner/spinner.scss';
-@use '../src/pages/profile/profile.scss';
-@use '../src/pages/character/character.scss';
+@use "../src/components/BottomTab/bottomTab.scss";
+@use "../src/components/Input/input.scss";
+@use "../src/components/Button/button.scss";
+@use "../src/components/Auth/auth.scss";
+@use "../src/components/SwitchButton/switchButton.scss";
+@use "../src/components/SearchInput/searchInput.scss";
+@use "../src/components/TextAreaInput/textAreaInput.scss";
+@use "../src/components/Spinner/spinner.scss";
+@use "../src/pages/profile/profile.scss";
+@use "../src/pages/character/character.scss";
 
 html,
 body {
@@ -25,11 +27,9 @@ a {
 * {
   box-sizing: border-box;
 }
-
 .logo {
   cursor: pointer;
 }
-
 .title {
   padding: 1.7rem 4rem;
   font-size: 1.2rem;
@@ -47,6 +47,51 @@ a {
   .nav {
     border-bottom: 1px solid #cdcdcd;
     width: 100%;
+  }
+
+  .loading-sec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .loading-sec-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+  }
+
+  & .count-heading-fv {
+    width: 100%;
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .count-heading-text-fv {
+      font-size: 1rem;
+      color: #c9c9d6;
+    }
+  }
+
+  & .no-more-result-sec {
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    & .no-more-result-text {
+      font-size: 1.5rem;
+    }
   }
 }
 
@@ -73,6 +118,7 @@ a {
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 2rem;
   margin: 5rem 13rem 1rem 13rem;
+  overflow: visible !important;
 
   @media screen and(max-width: 785px) {
     display: unset;
@@ -163,27 +209,5 @@ footer {
 .character-details-card {
   &:hover {
     transform: rotate(0deg) scale(1) !important;
-  }
-}
-
-.check-button-sec {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  & .check-btn-s {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    & .switch-btn-sec {
-      margin: 0 20px;
-    }
-
-    & .heading-cb-sec {
-      & .heading-cb {
-        font-size: 1rem;
-      }
-    }
   }
 }
